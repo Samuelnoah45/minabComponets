@@ -1,0 +1,6 @@
+query user($name:String!){
+  users(where: {name: {_ilike:$name}}) {
+    name
+    id
+  }
+}
