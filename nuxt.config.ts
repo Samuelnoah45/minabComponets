@@ -18,7 +18,9 @@ export default defineNuxtConfig({
       '@apollo/client',
       'ts-invariant/process',
       "graphql", 
-      "@urql/vue"
+      "@urql/vue",
+      '@fortawesome/fontawesome-svg-core',
+      '@fortawesome/free-brands-svg-icons'
     ],
     
   },

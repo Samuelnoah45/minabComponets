@@ -1,3 +1,36 @@
-@tailwind base;
 @tailwind components;
+
+.o-input{
+    @apply border-primary border-2 focus:outline-none p-1 rounded-md w-full
+}  
+
+.o-acp__menu   {
+    @apply bg-gray-100 rounded p-1
+}
+
+.o-acp__item--hover 
+{
+    @apply bg-primary-2  
+}
+.o-acp__item-footer, .o-acp__item-header {
+    @apply  font-semibold text-black text-sm uppercase
+}
+.o-acp__item-group-title{
+@apply  text-primary border-b-2 border-gray-500
+}
+.o-btn--disabled {
+@apply  text-black
+
+} 
+.o-btn {
+@apply p-1 bg-primary rounded cursor-pointer  text-white
+}
+.o-acp__item{
+    @apply cursor-pointer
+}
+
+
+
 @tailwind utilities;
+@tailwind base;
+

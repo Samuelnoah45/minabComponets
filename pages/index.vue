@@ -14,8 +14,8 @@ const  datad=ref([{
             items: ['Carrot', 'Broccoli', 'Cucumber', 'Onion'],
             a: ['Carrot', 'Broccoli', 'Cucumber', 'Onion']
           }])
-const data= ref(['Angular', 'Angular 2', 'Aurelia', 'Backbone', 'Ember', 'jQuery', 'Meteor', 'Node.js', 'Polymer', 'React', 'RxJS', 'Vue.js'])
-const datac=ref([ 
+const datac= ref(['Angular', 'Angular 2', 'Aurelia', 'Backbone', 'Ember', 'jQuery', 'Meteor', 'Node.js', 'Polymer', 'React', 'RxJS', 'Vue.js'])
+const data=ref([ 
     {id: 1,  user: { first_name: 'Jesse', last_name: 'Simmons' }, date: '2016/10/15 13:43:27', gender: 'Male' },
     { id: 2, user: { first_name: 'John', last_name: 'Jacobs' }, date: '2016/12/15 06:00:53', gender: 'Male' },
     { id: 3, user: { first_name: 'Tina', last_name: 'Gilbert' }, date: '2016/04/26 06:26:28', gender: 'Female' },
@@ -31,71 +31,78 @@ const datac=ref([
     { id: 13, user: { first_name: 'George', last_name: 'Dunn' }, date: '2017/03/07 12:26:52', gender: 'Male' },
     { id: 14, user: { first_name: 'Eric', last_name: 'Rogers' }, date: '2016/06/07 05:41:52', gender: 'Male' },
     { id: 15, user: { first_name: 'Juan', last_name: 'Meyer' }, date: '2017/02/01 04:56:34', gender: 'Male' },])
-const Value=ref('')
+const Value=ref('s')
+const selected=ref()
+const filterdata= computed(()=>{
+ return data.value.filter(option => {
+console.log("mqo")
+          return (
+            option.user.first_name
+              .toString()
+              .toLowerCase()
+              .indexOf(Value.value.toLowerCase()) >= 0
+          )
+        })
+})
+
+const d =computed(()=>{
+   return datad.value.filter(option => {
+          return (
+            option
+              .toString()
+              .toLowerCase()
+              .indexOf(Value.value.toLowerCase()) >= 0
+          )
+        })
+})
+
+const filterdata2=computed(()=>{
+    const newData = []
+        datad.value.forEach(element => {
+          const items = element.items.filter(item => item.toLowerCase().indexOf(Value.value.toLowerCase()) >= 0)
+          if (items.length) {
+            newData.push({ type: element.type, items })
+          }
+        })
+        return newData
+      
+})
     </script>
 <template>
-  <div class="flex justify-center ">
-     <div class="">
-      <h1>componets</h1>
-    <h-auto-complet
-       :query="users" 
-       :data="data"
-       :input-class="''"
-       :listEmptyStyle="''"
-       :groupBy="'type'"
-       :group_options="'a'"
-       :placeholder="'search'"
-       v-model:modelValue="Value"
-      ></h-auto-complet>
+  <div class="grid grid-cols-4 w-full  h-screen p-4 gap-x-4">
+    <!-- //autocomplete -->
+    <div class="felx justify-center items-center h-80">
+      <h-auto-complet
+       :data="filterdata2"
+       inputClass=""
+       rootClass=""
+       itemClass="''"
+       itemEmptyClass=""
+       groupField="type"
+       groupOptions="items"
+       placeholder="search"
+       itemFooterClass=""
+       @select="option => selected = option"
+       v-model="Value">
+      <template #footer >{{"footer"}}</template>
+      <template #empty >{{"no result found"}}</template>
+      <template #header >{{"Header"}}</template>
+      </h-auto-complet>
+       <div>{{selected}}</div>
+
+      <!-- //button -->
+ </div>
+ <div class="felx justify-center items-center h-80">
+    <h-button>
+      <template #default >{{""}}</template>
+    </h-button>
+ </div>
     
+
+
       </div>
+      
     <!-- <NuxtWelcome /> -->
-  </div>
+
 </template>
 
-
-appendToBody 	
-autocomplete 		
-checkInfiniteScroll 
-clearOnSelect  	
-clearable 	
-confirmKeys 	
-data 	
-debounceTyping 	
-expanded 	
-field 
-groupField 
-groupOptions 	
-icon 		
-iconPack 	
-iconRight 	
-iconRightClickable 	
-itemTag 	
-keepFirst 	
-keepOpen 
-maxHeight 		
-maxlength 		
-menuPosition 	
-menuTag 
-openOnFocus 	
-override 	
-selectOnClickOutside 	
-selectableFooter 
-selectableHeader 	
-size 
-statusIcon 		
-type 	
-useHtml5Validation 	
-v-model 	
-validationMessage
-expandedClass 	
-inputClasses 				
-itemClass 			
-itemEmptyClass 				
-itemFooterClass 				
-itemGroupTitleClass 	 			
-itemHeaderClass 				
-itemHoverClass 				
-menuClass 			
-menuPositionClass
-rootClass
