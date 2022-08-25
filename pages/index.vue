@@ -32,6 +32,37 @@ const data=ref([
     { id: 14, user: { first_name: 'Eric', last_name: 'Rogers' }, date: '2016/06/07 05:41:52', gender: 'Male' },
     { id: 15, user: { first_name: 'Juan', last_name: 'Meyer' }, date: '2017/02/01 04:56:34', gender: 'Male' },])
 const Value=ref('s')
+
+const items=ref([
+          {
+            title: 'Slide 1',
+            image: 'https://picsum.photos/id/1/1230/500'
+          },
+          {
+            title: 'Slide 2',
+            image: 'https://picsum.photos/id/2/1230/500'
+          },
+          {
+            title: 'Slide 3',
+            image: 'https://picsum.photos/id/3/1230/500'
+          },
+          {
+            title: 'Slide 4',
+            image: 'https://picsum.photos/id/4/1230/500'
+          },
+          {
+            title: 'Slide 5',
+            image: 'https://picsum.photos/id/5/1230/500'
+          },
+          {
+            title: 'Slide 6',
+            image: 'https://picsum.photos/id/6/1230/500'
+          },
+          {
+            title: 'Slide 7',
+            image: 'https://picsum.photos/id/7/1230/500'
+          }
+        ])
 const selected=ref()
 const filterdata= computed(()=>{
  return data.value.filter(option => {
@@ -67,6 +98,15 @@ const filterdata2=computed(()=>{
         return newData
       
 })
+
+const values=ref(1)
+
+const arrow=ref(true) 
+const arrowHover=ref(true)
+const drag=ref(true)       
+const  perList=ref(4)
+const increment=ref(1)
+const repeat=ref(false)
     </script>
 <template>
   <div class="grid grid-cols-4 w-full  h-screen p-4 gap-x-4">
@@ -97,7 +137,16 @@ const filterdata2=computed(()=>{
       <template #default >{{""}}</template>
     </h-button>
  </div>
+    <div>
+       <h-carousel v-model="values" :arrow="true" :arrow-hover="true" :items-to-show="2" :items-to-list="1" :repeat="false" :has-drag="true">
+      <template #default>
+         <o-carousel-item v-for="(item, i) in items" :key="i">
+        <img :src="item.image" />
+      </o-carousel-item>
+      </template>
     
+    </h-carousel>
+    </div>
 
 
       </div>
